@@ -14,11 +14,20 @@ Serial.parseInt(); -> Henter alle ints fra en input
 Serial.available(); -> Denne undersøker om det er tastet inn noe i buffer
 */
 
-if(Serial.available() > 0) 
-{
-  float number1 = Serial.parseFloat();
-  Serial.print(number1);
-}
+Serial.print("Skriv inn et regnestykke");
+
+while(!Serial.available()) {}
+float number1 = Serial.parseFloat();
+  
+while(!Serial.read == '*' || !Serial.read == '+' || !Serial.read == '/' || !Serial.read == '*') {}
+char op = Serial.read();
+
+while(!Serial.available()) {}  
+float number2 = Serial.parseFloat();
+
+float ans = calculate(number1, op, number2);
+
+printCalc(number1, op, number2, ans);
 
 }
 
@@ -64,5 +73,15 @@ else
 }
 
 return answer;
+}
 
+void printCalc(float num1, char op, float num2, float num3) 
+{
+  Serial.print(num1);
+  Serial.print(" ");
+  Serial.print(op);
+  Serial.print(" ");
+  Serial.print(num2);
+  Serial.print(" = ");
+  Serial.println(num3);
 }
